@@ -261,3 +261,14 @@ Bot Token 泄露后请立即去 `@BotFather` 执行 `/revoke` 重新生成。`jw
 ## 许可证
 
 本项目继承上游，采用 [MIT](LICENSE) 许可证。
+
+
+## 当前生产部署
+
+- 仓库：`Inklazy/cloud-mail`，生产分支 `main`。
+- 现有 Worker：`cloud-mail`，访问地址：https://mail.inklazy.com/。
+- Cloudflare Workers Builds 根目录：`/mail-worker`；构建命令留空，部署命令：`npx wrangler deploy`。Wrangler 的自定义构建会安装并打包 `mail-vue`。
+- D1、KV、AI 和邮件路由继续使用现有资源；运行时变量由 `keep_vars = true` 保留。不要把生产密钥放进 GitHub。
+- 推送 `main` 后由 Cloudflare 自动部署。上游 GitHub Actions 部署流程仅保留手动触发，避免重复部署；日常维护无需配置 GitHub 部署密钥或再次初始化数据库。
+
+本仓库从旧号当前源码 ZIP 迁移，保留 Netflix/TG 转发定制，不包含旧提交历史。
